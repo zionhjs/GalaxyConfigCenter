@@ -59,12 +59,6 @@ management:
       exposure:
         include: "*"
 
-# mybaits-plus配置
-mybatis-plus:
-  mapper-locations: classpath:/mapper/*Mapper.xml,classpath:/mapper/*/*.xml
-  configuration:
-    map-underscore-to-camel-case: true
-
 feign:
   hystrix:
     enabled: true
