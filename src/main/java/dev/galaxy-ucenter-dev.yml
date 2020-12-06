@@ -59,6 +59,10 @@ management:
       exposure:
         include: "*"
 
+# mybaits配置
+mybatis:
+  mapper-locations: classpath:/mapper/*/*.xml
+
 feign:
   hystrix:
     enabled: true
