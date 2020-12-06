@@ -1,0 +1,95 @@
+##远程自定义配置
+galaxy:
+  notCheckLoginUrl: /userLogin,/register,/getSmsVerificationCode,/findBackPasswor,/getInviteList,/getCategoryByParentId,/getUserListBySex,/error,/env/print,/swagger-ui.*,/static.*,/a2billing.*,/favicon.*,/webjars/springfox-swagger-ui.*,/v2/api-docs.*
+
+server:
+  port: 9400
+
+spring:
+  redis:
+    password: 123456
+    host: 47.100.17.12
+    port: 6379
+    timeout: 6000  # 连接超时时长（毫秒）
+    lettuce:
+      pool:
+        max-active: 1000  # 连接池最大连接数（使用负值表示没有限制）
+        max-wait: -1      # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-idle: 10      # 连接池中的最大空闲连接
+        min-idle: 5       # 连接池中的最小空闲连接
+  cloud:
+    gateway:
+      locator:  #是否和服务注册与发现组件结合，设置为 true 后可以直接使用应用名称调用服务
+        enbled: true
+      routes:
+        filters:
+          # 限流配置
+          - name: RequestRateLimiter
+            args:
+              key-resolver: '#{@remoteAddrKeyResolver}'
+              redis-rate-limiter.replenishRate: 10
+              redis-rate-limiter.burstCapacity: 20
+            # 降级配置
+          - name: Hystrix
+            args:
+              name: default
+              fallbackUri: 'forward:/fallback'
+
+  rabbitmq:
+    host: 47.100.17.12
+    port: 5672
+    username: galaxy
+    password: galaxy
+
+# 注册中心
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:9000/eureka/
+
+# 不校验验证码终端
+ignore:
+  clients:
+    - test
+
+### 网关配置
+zuul:
+  host:
+    connect-timeout-millis: 15000 #HTTP连接超时大于Hystrix的超时时间
+    socket-timeout-millis: 60000  #socket超时
+  # 路由信息配置
+  routes:
+    # 针对某个服务的配置，可自定义
+    wanwan-ucenter:
+      # 访问的路径，此处要以 '/do/' 开头
+      path: /gateway/ucenter/**
+      # 后端服务的实例 Id。
+      # 意思：以 '/apigateway/' 开头的请求，都会向后端服务 'wanwan-ucenter' 进行转发
+      serviceId: wanwan-ucenter
+      # 剥夺前缀，此配置是针对上方 'path' 配置的项
+      # 为 true 的情况下：向后端转发之后是不会携带 '/do' 的。为 false 则相反
+      stripPrefix: true
+      # 不向后端服务传递的敏感头信息
+      sensitiveHeaders: Cookie,Set-Cookie,Authorization
+    wanwan-invite:
+      path: /gateway/invite/**
+      serviceId: wanwan-invite
+      stripPrefix: true
+      sensitiveHeaders: Cookie,Set-Cookie,Authorization
+    soulchat-moment:
+      path: /gateway/moment/**
+      serviceId: soulchat-moment
+      stripPrefix: true
+      sensitiveHeaders: Cookie,Set-Cookie,Authorization
+  #忽略的服务，有些后端服务是不需要让网管代理的，防止服务侵入，*代表全部
+  ignored-services: "*"
+ribbon:        #设置ribbon的超时时间小于zuul的超时时间
+  ReadTimeout: 10000
+  ConnectTimeout: 10000
+
+#zuul:
+#  routes:
+#  #自定义路由
+#    wanwan-ucenter: /apigateway/**
