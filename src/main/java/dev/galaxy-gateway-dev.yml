@@ -89,6 +89,13 @@ ribbon:        #设置ribbon的超时时间小于zuul的超时时间
   ReadTimeout: 10000
   ConnectTimeout: 10000
 
+## 允许/actuator/bus-refresh接口被外部调用
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
 #zuul:
 #  routes:
 #  #自定义路由
