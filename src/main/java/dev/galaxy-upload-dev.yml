@@ -5,7 +5,7 @@ galaxy:
     version: v1.0
 
 server:
-  port: 9800
+  port: 9600
   servlet:
     context-path: /
 
@@ -33,7 +33,7 @@ spring:
       min-idle: 5       # 连接池中的最小空闲连接
 
 log:
-  path : galaxy/upload/logs
+  path : galaxy/ucenter/logs
   level : info
   ibatis : DEBUG
 
@@ -45,7 +45,7 @@ ignore:
   - /*/**
 
 file:
-  staticAccessPath: /galaxy/upload/**
+  staticAccessPath: /ucenter/upload/**
   uploadPath: /home/upload/
   #uploadPath: E:\upload
 
