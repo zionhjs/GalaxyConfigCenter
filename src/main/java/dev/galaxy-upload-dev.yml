@@ -73,7 +73,7 @@ management:
 
 # mybaits配置
 mybatis:
-  mapper-locations: classpath:/mapper/*/*.xml
+  mapper-locations: classpath:/mapper/*/*.xml,classpath:/mapper/*.xml
 
 feign:
   hystrix:
