@@ -1,12 +1,15 @@
 ##远程自定义配置
 galaxy:
   notCheckLoginUrl: /userLogin,/register,/getSmsVerificationCode,/findBackPasswor,/getInviteList,/getCategoryByParentId,/getUserListBySex,/error,/env/print,/swagger-ui.*,/static.*,/a2billing.*,/favicon.*,/webjars/springfox-swagger-ui.*,/v2/api-docs.*
-  ucenter:
+  upload:
     version: v1.0
 
 server:
-  port: 9600
+  port: 9800
   servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
     context-path: /
 
 spring:
@@ -33,7 +36,7 @@ spring:
       min-idle: 5       # 连接池中的最小空闲连接
 
 log:
-  path : galaxy/ucenter/logs
+  path : galaxy/upload/logs
   level : info
   ibatis : DEBUG
 
@@ -45,11 +48,14 @@ ignore:
   - /*/**
 
 file:
-  staticAccessPath: /ucenter/upload/**
+  staticAccessPath: /upload/images/**
   uploadPath: /home/upload/
   #uploadPath: E:\upload
 
+# 注册中心
 eureka:
+  instance:
+    prefer-ip-address: true
   client:
     service-url:
       defaultZone: http://localhost:9000/eureka/

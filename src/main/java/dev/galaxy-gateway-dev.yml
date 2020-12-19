@@ -95,8 +95,3 @@ management:
     web:
       exposure:
         include: "*"
-
-#zuul:
-#  routes:
-#  #自定义路由
-#    wanwan-ucenter: /apigateway/**

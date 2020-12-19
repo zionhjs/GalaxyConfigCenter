@@ -6,8 +6,6 @@ galaxy:
 
 server:
   port: 9600
-  servlet:
-    context-path: /
 
 spring:
   # 数据源
@@ -49,7 +47,10 @@ file:
   uploadPath: /home/upload/
   #uploadPath: E:\upload
 
+# 注册中心
 eureka:
+  instance:
+    prefer-ip-address: true
   client:
     service-url:
       defaultZone: http://localhost:9000/eureka/
