@@ -35,6 +35,11 @@ spring:
     multipart:
       max-file-size: 10MB
       max-request-size: 100MB
+  # 配置rabbitmq的地址以及用户密码
+  rabbitmq:
+    host: 47.100.17.12
+    username: galaxy
+    password: galaxy
 
 log:
   path : galaxy/upload/logs
@@ -52,14 +57,6 @@ file:
   staticAccessPath: /upload/images/**
   uploadPath: /home/upload/
   #uploadPath: E:\upload
-
-# 注册中心
-eureka:
-  instance:
-    prefer-ip-address: true
-  client:
-    service-url:
-      defaultZone: http://localhost:9000/eureka/
 
 ## 允许/actuator/bus-refresh接口被外部调用
 management:
