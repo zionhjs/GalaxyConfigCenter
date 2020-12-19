@@ -1,6 +1,11 @@
 ##远程自定义配置
 galaxy:
   notCheckLoginUrl: /userLogin,/register,/getSmsVerificationCode,/findBackPasswor,/getInviteList,/getCategoryByParentId,/getUserListBySex,/error,/env/print,/swagger-ui.*,/static.*,/a2billing.*,/favicon.*,/webjars/springfox-swagger-ui.*,/v2/api-docs.*
+  amazonProperties:
+    accessKey: AKIA2AUK3NDSXMVXAQ6B
+    secretKey: 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
+    region: us-west-1
+    cloudfront_DomainName: d18bri8sapzuu4.cloudfront.net
   upload:
     version: v1.0
 
