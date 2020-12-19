@@ -6,6 +6,7 @@ galaxy:
     secretKey: siJZU2PBjxbJ8y9tettpJwwHLcwm/qlFs3NLYwpa
     region: us-west-1
     cloudfront_DomainName: d18bri8sapzuu4.cloudfront.net
+    imageBucketName: galaxy-image
   upload:
     version: v1.0
 
