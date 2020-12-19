@@ -44,6 +44,11 @@ spring:
             args:
               name: default
               fallbackUri: 'forward:/fallback'
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
+
 
   rabbitmq:
     host: 47.100.17.12
