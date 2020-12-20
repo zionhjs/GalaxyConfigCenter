@@ -7,6 +7,7 @@ galaxy:
     region: us-west-1
     cloudfront_DomainName: d18bri8sapzuu4.cloudfront.net
     imageBucketName: galaxy-image
+    videoBucketName: galaxy-video
   upload:
     version: v1.0
 
