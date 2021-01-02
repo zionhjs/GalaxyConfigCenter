@@ -88,6 +88,11 @@ zuul:
       serviceId: galaxy-cms
       stripPrefix: true
       sensitiveHeaders: Cookie,Set-Cookie,Authorization
+    galaxy-jms:
+      path: /gateway/jms/**
+      serviceId: galaxy-jms
+      stripPrefix: true
+      sensitiveHeaders: Cookie,Set-Cookie,Authorization
   #忽略的服务，有些后端服务是不需要让网管代理的，防止服务侵入，*代表全部
   ignored-services: "*"
 ribbon:        #设置ribbon的超时时间小于zuul的超时时间
