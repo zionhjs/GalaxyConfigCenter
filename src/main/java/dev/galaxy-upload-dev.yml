@@ -8,6 +8,8 @@ galaxy:
     cloudfront_DomainName: d18bri8sapzuu4.cloudfront.net
     imageBucketName: galaxy-image
     videoBucketName: galaxy-video
+    image360BucketName: galaxy360image
+    video360BucketName: galaxy360video
   upload:
     version: v1.0
 
