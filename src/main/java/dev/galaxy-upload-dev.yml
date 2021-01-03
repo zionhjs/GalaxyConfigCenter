@@ -42,8 +42,8 @@ spring:
       min-idle: 5       # 连接池中的最小空闲连接
   servlet:
     multipart:
-      max-file-size: 50MB
-      max-request-size: 50MB
+      max-file-size: 1000MB
+      max-request-size: 1000MB
   # 配置rabbitmq的地址以及用户密码
   rabbitmq:
     host: 47.100.17.12
