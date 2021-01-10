@@ -62,7 +62,7 @@ hystrix:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 1000   #熔断器熔断降级时间 设置要大于 connectTimeout + readTimeout 之和
+            timeoutInMilliseconds: 50000   #熔断器熔断降级时间 设置要大于 connectTimeout + readTimeout 之和
             #假设：连接500毫秒，处理短信4000毫秒，哪个timeOut会触发服务降级
             # 链接   500毫秒 < connectTimeout 1000 正常；处理短信4000 < readTimeout 5000 正常； 但是 (4000 + 500) > 1000 超过了熔断时间。因此超时降级
       circuitBreaker:
