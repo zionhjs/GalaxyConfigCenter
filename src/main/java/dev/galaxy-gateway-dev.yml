@@ -65,11 +65,6 @@ hystrix:
             timeoutInMilliseconds: 50000   #熔断器熔断降级时间 设置要大于 connectTimeout + readTimeout 之和
             #假设：连接500毫秒，处理短信4000毫秒，哪个timeOut会触发服务降级
             # 链接   500毫秒 < connectTimeout 1000 正常；处理短信4000 < readTimeout 5000 正常； 但是 (4000 + 500) > 1000 超过了熔断时间。因此超时降级
-      circuitBreaker:
-        forceOpen: false #true代表强制熔断器强制处于Open状态，即服务不可用
-        requestVolumeThreshold: 50
-        errorThresholdPercentage: 60
-        sleepWindowInMilliseconds: 10000
     # 全局默认的熔断设置
     default:
       execution:
@@ -126,9 +121,6 @@ zuul:
       sensitiveHeaders: Cookie,Set-Cookie,Authorization
   #忽略的服务，有些后端服务是不需要让网管代理的，防止服务侵入，*代表全部
   ignored-services: "*"
-ribbon:        #设置ribbon的超时时间小于zuul的超时时间
-  ReadTimeout: 10000
-  ConnectTimeout: 10000
 
 ## 允许/actuator/bus-refresh接口被外部调用
 management:
