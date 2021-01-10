@@ -95,5 +95,5 @@ hystrix:
             # 链接   500毫秒 < connectTimeout 1000 正常；处理短信4000 < readTimeout 5000 正常； 但是 (4000 + 500) > 1000 超过了熔断时间。因此超时降级
 
 ribbon:        #设置ribbon的超时时间小于zuul的超时时间
-  ReadTimeout: 10000
-  ConnectTimeout: 10000
+  ReadTimeout: 50000
+  ConnectTimeout: 50000
