@@ -54,37 +54,6 @@ spring:
     username: galaxy
     password: galaxy
 
-#自定义熔断
-hystrix:
-  command:
-    #"类名#方法名(参数类型1,参数类型2,参数类型n)"   微服务局部处理
-    "UploadVideoService#uploadVideo(MultipartFile,String,String,String,String,Integer)": #HystrixCommandKey
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 50000   #熔断器熔断降级时间 设置要大于 connectTimeout + readTimeout 之和
-            #假设：连接500毫秒，处理短信4000毫秒，哪个timeOut会触发服务降级
-            # 链接   500毫秒 < connectTimeout 1000 正常；处理短信4000 < readTimeout 5000 正常； 但是 (4000 + 500) > 1000 超过了熔断时间。因此超时降级
-      circuitBreaker:
-        forceOpen: false #true代表强制熔断器强制处于Open状态，即服务不可用
-        requestVolumeThreshold: 50
-        errorThresholdPercentage: 60
-        sleepWindowInMilliseconds: 10000
-    # 全局默认的熔断设置
-    default:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 6000
-      circuitBreaker:
-        #在当20秒的时间内，最近50次调用请求，请求错误率超过60%，则触发熔断10秒，期间快速失败。
-        requestVolumeThreshold: 50
-        errorThresholdPercentage: 60
-        sleepWindowInMilliseconds: 10000
-      metrics:
-        rollingStats:
-          timeInMilliseconds: 20000
-
 # 不校验验证码终端
 ignore:
   clients:
@@ -126,9 +95,6 @@ zuul:
       sensitiveHeaders: Cookie,Set-Cookie,Authorization
   #忽略的服务，有些后端服务是不需要让网管代理的，防止服务侵入，*代表全部
   ignored-services: "*"
-ribbon:        #设置ribbon的超时时间小于zuul的超时时间
-  ReadTimeout: 10000
-  ConnectTimeout: 10000
 
 ## 允许/actuator/bus-refresh接口被外部调用
 management:
@@ -136,3 +102,19 @@ management:
     web:
       exposure:
         include: "*"
+
+#自定义熔断
+hystrix:
+  command:
+    #"类名#方法名(参数类型1,参数类型2,参数类型n)"   微服务局部处理
+    "UploadVideoService#uploadVideo(MultipartFile,String,String,String,String,Integer)": #HystrixCommandKey
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 50000   #熔断器熔断降级时间 设置要大于 connectTimeout + readTimeout 之和
+            #假设：连接500毫秒，处理短信4000毫秒，哪个timeOut会触发服务降级
+            # 链接   500毫秒 < connectTimeout 1000 正常；处理短信4000 < readTimeout 5000 正常； 但是 (4000 + 500) > 1000 超过了熔断时间。因此超时降级
+
+ribbon:        #设置ribbon的超时时间小于zuul的超时时间
+  ReadTimeout: 10000
+  ConnectTimeout: 10000
