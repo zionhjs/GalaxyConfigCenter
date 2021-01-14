@@ -1,6 +1,5 @@
 ##远程自定义配置
 galaxy:
-  notCheckLoginUrl: /userLogin,/register,/getSmsVerificationCode,/findBackPasswor,/user/findByModal,/images/findByModal,/images/detail,/video/findByModal,/video/detail,/cms/team/detail,/cms/team/findByModal,/blog/homeFindByTitle,/email/sendQuery,/blog/findByModalOrderByTime,/url/redirect,/getInviteList,/getCategoryByParentId,/getUserListBySex,/error,/env/print,/swagger-ui.*,/static.*,/a2billing.*,/favicon.*,/webjars/springfox-swagger-ui.*,/v2/api-docs.*
   amazonProperties:
     accessKey: AKIA2AUK3NDSXMVXAQ6B
     secretKey: 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
