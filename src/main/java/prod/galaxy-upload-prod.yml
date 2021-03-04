@@ -1,8 +1,8 @@
 ##远程自定义配置
 galaxy:
   amazonProperties:
-    accessKey: AKIA2AUK3NDSQG56S2M4
-    secretKey: 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
+    accessKey: AKIA2AUK3NDSXMVXAQ6B
+    secretKey: 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
     region: us-west-1
     cloudfront_DomainName: d18bri8sapzuu4.cloudfront.net
     imageBucketName: galaxy-image
@@ -23,15 +23,15 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: root
-    url: jdbc:mysql://47.100.17.12:3306/galaxy?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false
+    password: 123456
+    url: jdbc:mysql://localhost:3306/galaxy?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false
     maxLifetime: 1800000
     maximumPoolSize: 15
   redis:
     # 指定redis 使用2库
     database: 2
     password: 123456
-    host: 47.100.17.12
+    host: localhost
     port: 6379
     timeout: 6000  # 连接超时时长（毫秒）
     pool:
